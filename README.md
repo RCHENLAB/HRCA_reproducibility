@@ -1,2 +1,2 @@
 # HRCA_reproducibility
-Code and analysis from the integrative multi-omics single cell atlas of the human retina project
+This repository comprises code and analyses for the Human Retina Cell Atlas (HRCA) project within the HCA framework, emphasizing the [Eye Biological Network](https://www.humancellatlas.org/biological-networks/).
