@@ -18,4 +18,5 @@ HRCA paper: [Li et al., 2023](xxx)
 
 ## Questions
 
-In case of questions, submit an issue to this repository.
+If you have any questions, please submit an issue to this repository.
+
