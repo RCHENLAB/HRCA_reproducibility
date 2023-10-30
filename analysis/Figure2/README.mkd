@@ -89,3 +89,16 @@ This subfigure depicts the hierarhical clustering of bipolar cell types across s
 
 This subfigure visualizes the overlap of the top-ranked genes for giant bipolar cells and blue bipolar cells between snRNA-seq and scRNA-seq. The input file uses the data from the cast table in Supplementary Table 7, which is also accessible at Figure2E_cast.txt.gz. The running script, Figure2E.sh, executes the utility rplotvenndiagramovlp.sh to plot the Venn Diagram of the overlapped top-ranked genes. The utiliy can be found at [rplotvenndiagramovlph](../../utility/rplotvenndiagramovlp). The resulting PDF file, Figure2E.pdf, is the generated Venn Diagram and has been edited using Illustrator for labeling.
 
+
+## Figure 2F
+
+This subfigure compares BC5A-D cell types across humans, mice, and macaques. The analysis steps are very similar to those in Figure 1E, which utilizes the utilities scrnah5adrawcounts2bulkby and scrnah5adhvg2metaneighborus. For more details, please refer to [Figure1](../Figure1/README.mkd).
+
+To briefly describe the process for BC5A-D, the input file can be downloaded using the following command:
+
+```
+wget -O BC5A_D.h5ad https://bcm.box.com/shared/static/0sr0mqpz2zwlmp89gvl98tds0soir50m.h5ad
+```
+
+The running script, Figure2F.sh, executes the two utilities, scrnah5adrawcounts2bulkby and scrnah5adhvg2metaneighborus, to generate the cell type similarities among BC5A-D in mice and their mapped cell types in humans, and macaques. Figure2F.pdf is the resulting PDF file for the cell type similarity matrix, which has been edited using Illustrator for labeling.
+
