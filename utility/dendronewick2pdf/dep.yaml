@@ -1,0 +1,10 @@
+conda:
+  - r-phylogram
+  - r-rcolorbrewer
+  - r-remotes # for lijinbio/jlutils
+  - r-seurat
+  - r-ggplot2
+  - bioconductor-rhdf5
+  - bioconductor-deseq2
+bitbucket_R:
+  - lijinbio/jlutils

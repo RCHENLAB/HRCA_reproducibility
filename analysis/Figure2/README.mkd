@@ -73,3 +73,15 @@ pip install ensembl-rest record-keeper
 
 - Figure2C.pdf: This resulting PDF file is a co-embedding of bipolar cells across humans, mice, and macaques.
 
+## Figure 2D
+
+This subfigure depicts the hierarhical clustering of bipolar cell types across species. The scripts are summarized in Figure2D.sh. Specifically,
+
+- scrnah5adexpr2hclust: This utility is used to build the hierarchical clustering for bipolr cell types using the mouse gene expression matrix. It generates the hierarchical tree in [Newick](https://en.wikipedia.org/wiki/Newick_format) format. This utility can be found in the utility directory at [scrnah5adexpr2hclust](../../utility/scrnah5adexpr2hclust).
+
+- dendronodeexpandbymap: This utility is used to expand the leaf nodes by a mapping (Figure2D_nodemap.txt) on the hierarchical tree from the previous step. This utility can be found in the utility directory at [dendronodeexpandbymap](../../utility/dendronodeexpandbymap).
+
+- dendronewick2pdf: This utility is used to refine the tree plotting by coloring leaf node labels based on a color mapping (Figure2D_colormap.txt). It can be found at [dendronewick2pdf](../../utility/dendronewick2pdf).
+
+- Figure2D.pdf is the resulting PDF file of the hierarchical tree of bipolar cell types across species. It has been edited using Illustrator for text.
+
