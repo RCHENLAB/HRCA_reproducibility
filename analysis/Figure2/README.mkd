@@ -16,4 +16,19 @@ wget -O snRNA_BC.h5ad https://bcm.box.com/shared/static/sxoolz2wwmkgdezhn2myz79d
 
 - Figure2A.pdf: This resulting PDF file is a dot plot for bipolar cells and has been edited using Illustrator for text.
 
+## Figure 2B
+
+This subfigure illustrates the data integration and cell type annotation for bipolar cells. The following files are used in the figure:
+
+- snRNA_BC_scVI.h5ad: This file is integrated file for bipolar cells using scVI. The steps to generate this integration are similar to those in Figure 1D using the scrnah5adfiles2scviwkfl utility. To download this .h5ad file, please run the following command:
+
+```
+wget -O snRNA_BC_scVI.h5ad https://bcm.box.com/shared/static/cdgp1yyzd1gq1unk7zfqztuca9vyoolo.h5ad
+```
+
+- scrnah5adumapby.sh: This utility is specifically used to plot UMAP for bipolar cell types. It can be found in the utility directory at [scrnah5adumapby](../../utility/scrnah5adumapby).
+
+- Figure2B.sh: This running script executes scrnah5adumapby.sh to generate the UMAP for bipolar cell types.
+
+- Figure2B.png: This resulting PNG file is the UMAP for bipolar cell types.
 
