@@ -1,2 +1,19 @@
 # Bipolar cells
 
+## Figure 2A
+
+This subfigure displays a dot plot of canonical marker genes for bipolar cell types. The following files are used in this subfigure:
+
+- snRNA_BC.h5ad: This is the input file for bipolar cells from the snRNA-seq datasets. To download the file, please run the following command:
+
+```
+wget -O snRNA_BC.h5ad https://bcm.box.com/shared/static/sxoolz2wwmkgdezhn2myz79dfsgdb11j.h5ad
+```
+
+- Figure2A.sh: This running script executes the utility scrnah5ad2seuratdotplot to generate a dot plot for biplor cell types. The utility can be found in the utility directory at [scrnah5ad2seuratdotplot](../../utility/scrnah5ad2seuratdotplot).
+  - Figure2A_group.txt: This is used to reorder the biplor cell types in the resulting dot plot.
+  - Figure2A_marker.txt: This lists the canonical marker genes for the dot plot.
+
+- Figure2A.pdf: This resulting PDF file is a dot plot for bipolar cells and has been edited using Illustrator for text.
+
+
