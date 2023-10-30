@@ -85,3 +85,7 @@ This subfigure depicts the hierarhical clustering of bipolar cell types across s
 
 - Figure2D.pdf is the resulting PDF file of the hierarchical tree of bipolar cell types across species. It has been edited using Illustrator for text.
 
+## Figure 2E
+
+This subfigure visualizes the overlap of the top-ranked genes for giant bipolar cells and blue bipolar cells between snRNA-seq and scRNA-seq. The input file uses the data from the cast table in Supplementary Table 7, which is also accessible at Figure2E_cast.txt.gz. The running script, Figure2E.sh, executes the utility rplotvenndiagramovlp.sh to plot the Venn Diagram of the overlapped top-ranked genes. The utiliy can be found at [rplotvenndiagramovlph](../../utility/rplotvenndiagramovlp). The resulting PDF file, Figure2E.pdf, is the generated Venn Diagram and has been edited using Illustrator for labeling.
+
