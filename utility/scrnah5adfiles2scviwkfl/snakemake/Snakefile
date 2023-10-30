@@ -1,0 +1,65 @@
+from snakemake.utils import min_version
+min_version("7.0")
+
+include: "config.smk"
+
+rule all:
+  input:
+    expand(
+      [
+        "{name}.h5ad",
+        "scrnah5adumapby/{name}.html"
+      ],
+      name=bname
+    )
+
+rule scrnah5adsubsetbyvaluecounts:
+  input:
+    get_file,
+  output:
+    "scrnah5adsubsetbyvaluecounts/{name}.h5ad",
+  shell:
+    "{scrnah5adsubsetbyvaluecounts_cmd} -d scrnah5adsubsetbyvaluecounts -b {wildcards.name} -- {input}"
+
+rule scrnascvih5ad:
+  input:
+    "scrnah5adsubsetbyvaluecounts/{name}.h5ad",
+  output:
+    "scrnascvih5ad/{name}.h5ad",
+  shell:
+    "{scrnascvih5ad_cmd} -d scrnascvih5ad -b {wildcards.name} -- {input}"
+
+rule scrnascanpycombinerawcountsscvi:
+  input:
+    rawfile="scrnah5adsubsetbyvaluecounts/{name}.h5ad",
+    scvifile="scrnascvih5ad/{name}.h5ad",
+  output:
+    "{name}.h5ad",
+  shell:
+    "{scrnascanpycombinerawcountsscvi_cmd} -d . -b {wildcards.name} -r {input.rawfile} -v {input.scvifile}"
+
+rule scrnah5ad2normscale:
+  input:
+    "{name}.h5ad",
+  output:
+    "scrnah5ad2normscale/{name}.h5ad",
+  shell:
+    "{scrnah5ad2normscale_cmd} -d scrnah5ad2normscale -b {wildcards.name} -- {input}"
+
+rule scrnah5adumapby:
+  input:
+    "scrnah5ad2normscale/{name}.h5ad",
+  output:
+    directory("scrnah5adumapby/{name}/figures")
+  shell:
+    "{scrnah5adumapby_cmd} -d scrnah5adumapby/{wildcards.name} -b {wildcards.name} -- {input}"
+
+rule mergeimg2htmlbyjinja:
+  input:
+    "scrnah5adumapby/{name}/figures",
+  output:
+    "scrnah5adumapby/{name}.html",
+  shell:
+    """
+    mergeimg2htmlbyjinja -d scrnah5adumapby -b {wildcards.name} -- {input}/*
+    """
