@@ -1,0 +1,4 @@
+conda:
+  - scanpy
+  - seaborn
+  - pandas

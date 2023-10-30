@@ -1,0 +1,19 @@
+conda:
+  - anndata
+  - scanpy
+  - pandas=1.5
+  - seaborn
+  - r-remotes # for lijinbio/jlutils
+  - r-seurat
+  - r-ggplot2
+  - bioconductor-rhdf5
+  - r-ape
+  - r-rcolorbrewer
+  - r-networkd3
+  - r-tidyverse
+  - "'r-htmlwidgets>=1.6.2'"
+  - bioconductor-deseq2
+bitbucket_R:
+  - lijinbio/jlutils
+bitbucket_py:
+  - lijinbio/jlutilspy

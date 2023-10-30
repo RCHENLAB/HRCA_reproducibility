@@ -32,3 +32,44 @@ wget -O snRNA_BC_scVI.h5ad https://bcm.box.com/shared/static/cdgp1yyzd1gq1unk7zf
 
 - Figure2B.png: This resulting PNG file is the UMAP for bipolar cell types.
 
+## Figure 2C
+
+This subfigure is related to the cross-species analysis for bipolar cells across humans, mice, and macaques using [SATURN](https://github.com/snap-stanford/SATURN). The following files are used in the figure:
+
+- BC_human.h5ad, BC_mouse.h5ad, BC_macaque.h5ad: These three files serve as input for the cross-species analysis. To download these files, please run the following commands:
+
+```
+wget -O BC_human.h5ad https://bcm.box.com/shared/static/ozyla9gy5eaeopotcdufg8aj2mou6xln.h5ad
+wget -O BC_mouse.h5ad https://bcm.box.com/shared/static/zbhn2qct3ocow784fjhhpr2oqo01njb8.h5ad
+wget -O BC_macaque.h5ad https://bcm.box.com/shared/static/vgp155ae6hvyheg6qn89cp577k6cpvic.h5ad
+```
+
+- Protein embeddings for humans, mice, and macaques: Protein embeddings (the ESM2 version) were downloaded from the SATURN repository at [http://snap.stanford.edu/saturn/data/protein_embeddings.tar.gz](http://snap.stanford.edu/saturn/data/protein_embeddings.tar.gz).
+
+- Installing dependencies to run SATURN via Conda:
+
+We recommand installing the required dependencies for SATURN within a Conda environment. Below are example commands to create a Conda environment to run SATURN utilities.
+
+```
+mamba create -y -n u_saturn scanpy=1.9.1 anndata=0.8 matplotlib=3.6 pandas=1.5 biopython fair-esm igraph ipdb ipython louvain matplotlib notebook numpy plotly scikit-learn-intelex scikit-misc typed-argument-parser faiss-gpu bioconductor-deseq2 r-seurat bioconductor-summarizedexperiment r-ggplot2 bioconductor-rhdf5 r-remotes
+mamba install -y -n u_saturn pytorch torchvision torchaudio pytorch-cuda -c pytorch -c nvidia
+mamba install -y -n u_saturn scvi-tools leidenalg blas=*=openblas
+pip install ensembl-rest record-keeper
+```
+
+- Figure2C.sh: This running script executes the saturncrossspecieswkfl workflow for cross-species analysis. The workflow and its dependencies can be found in the utility directory at [saturncrossspecieswkfl](../../utility/saturncrossspecieswkfl). The steps of the workflow are summarized as follows: 
+
+  - scrnah5adduplicateobs: Used to duplicate existing metadata names to new names. This is a helper script to prepare SATURN metadata columns for cross-species analysis.
+  - scrnah5adsubsetsamplingbykey.sh: Used to down-sampling cells by species per sample.
+  - scrnah5adsubsetbyvaluecounts.sh: Used to filter out low-count samples.
+  - saturntraincrossspecies: This is the main utility to perform cross-species analysis using SATURN. The SATURN script "train-saturn.py" is executed in this utility.
+  - saturntrainh5ad2umap: Used to generate UMAP using the calculated low-dimenstional representations by SATURN.
+  - saturnh5adumap2seuratdimplotsplitby: Used to plot a UMAP using Seurat functions for more sophisticated configurations compared to Scanpy.
+  - saturnh5adumap2seuratclustree: Used to build and plot a phylogenetic tree using SATURN low-embedding for cross-species analysis.
+  - scrnah5adsplitby.sh: Used to split the resulting Scanpy object file into separate species.
+  - saturnh5adlatent2cntclassifier: Used to develop conventional classifiers using SATURN latent representations. The "train" subcommand is implemented for training a classifier on mice or macaques, and the "predict" subcommand is used to predict human types using the classifier.
+  - rtable2sankeydiagram: Used to plot a Sankey diagram from a contingency table.
+  - html2png: Used to convert an HTML file to a high-resolution PNG file.
+
+- Figure2C.pdf: This resulting PDF file is a co-embedding of bipolar cells across humans, mice, and macaques.
+

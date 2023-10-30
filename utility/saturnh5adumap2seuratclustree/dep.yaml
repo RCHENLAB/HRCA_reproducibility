@@ -1,0 +1,10 @@
+conda:
+  - r-remotes
+  - r-seurat
+  - r-ggplot2
+  - bioconductor-rhdf5
+  - r-ape
+  - r-rcolorbrewer
+  - bioconductor-deseq2
+bitbucket_R:
+  - lijinbio/jlutils
