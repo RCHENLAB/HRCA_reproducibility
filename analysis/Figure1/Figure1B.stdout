@@ -1,0 +1,10 @@
+[1m[33m> rplotpiechart.sh -f -H 3.5 -W 4 -o Figure1B.pdf < Figure1B.txt[0m
+                  x       y
+1 Chen (this study) 1449879
+2      Liang (2023)  250000
+3      Cowan (2020)  149852
+4     Orozco (2020)  105017
+5        Yan (2020)   93842
+6   Lukowski (2019)    9694
+7      Menon (2019)    6318
+8      Voigt (2019)    6061

@@ -1,2 +1,18 @@
 # Overview of the single cell atlas of the human retina
 
+## Figure 1A
+
+This workflow was generated using BioRender software.
+
+## Figure 1B
+
+This subfigure is designed to display a pie chart representing the number of cells in the datasets. The following files were used.
+
+- Figure1B.txt: Contains the curated number of cells for datasets.
+- rplotpiechart.sh: This utility is used to plot the pie chart and can be found in the utility directory at [rplotpiechart](../../utility/rplotpiechart).
+- Figure1B.sh: This running script is used to execute the utility rplotpiechart.sh in order to generate the pie chart with parameters.
+
+The resulting figure image was edited using Illustrator for text labels.
+
+
+
