@@ -49,7 +49,7 @@ mamba install -y -n u_scvi -c pytorch -c nvidia pytorch pytorch-gpu pytorch-cuda
 - Figure1D.sh: This running script executes scrnah5adfiles2scviwkfl on the input file with specific parameters.
   - Figure1D_config.yaml: This is the configuration YAML file for the workflow with the configured parameters.
 
-- Figure1D_snRNA.html: This is the resulting HTML file containing UMAP images.
+- Figure1D_snRNA.html: This is the resulting HTML file containing UMAP images. For example, Figure1D_snRNA_majorclass.png displays a UMAP visualization of snRNA-seq cells, with colors representing major classes.
 
   - To download this HTML file, please use the following command:
 
@@ -58,4 +58,5 @@ mamba install -y -n u_scvi -c pytorch -c nvidia pytorch pytorch-gpu pytorch-cuda
   ```
 
   - This HTML can be also accessible at https://htmlpreview.github.io/?https://bcm.box.com/shared/static/asnw2s4um84o1m5y7brjo4iauwfx05g9.html
+
 
