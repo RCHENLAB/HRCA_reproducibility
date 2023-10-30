@@ -1,0 +1,479 @@
+from snakemake.utils import min_version
+min_version("7.0")
+
+include: "config.smk"
+
+rule all:
+  input:
+    expand(
+      [
+        "{name}.txt",
+        "saturntraincrossspecies/{name}/saturn_results",
+        "saturntraincrossspecies/{name}.h5ad",
+        "saturntrainh5ad2umap/{name}.html",
+        "saturnh5adumap2seuratdimplotsplitby/{name}.html",
+        "saturnh5adumap2seuratclustree/{name}.html",
+        "saturnh5adlatent2cntclassifier/{name}/predict",
+        "saturnh5adlatent2cntclassifier/{name}/predict/rtable2sankeydiagram",
+        "tsvfileaddfromcolumn/{name}/predict",
+        "tsvfileaddfromcolumn/{name}/predict/saturncntclassifierpred2tab",
+        "tsvfileaddfromcolumn/{name}/predict/rtable2sankeydiagram",
+        "saturnh5adlatent2cntclassifier/{name}/predictproba",
+        "saturnh5adlatent2cntclassifier/{name}/predictproba/rtable2sankeydiagram",
+        "tsvfileaddfromcolumn/{name}/predictproba",
+        "tsvfileaddfromcolumn/{name}/predictproba/saturncntclassifierpred2tab",
+        "tsvfileaddfromcolumn/{name}/predictproba/rtable2sankeydiagram",
+      ],
+      name=bname,
+      ),
+
+rule scrnah5adduplicateobs:
+  input:
+    get_file,
+  output:
+    "{name}.txt",
+  wildcard_constraints:
+    name="[^/]+",
+  run:
+    import yaml
+    import pandas as pd
+    with open(input[0], 'r') as f:
+      xinfo=yaml.load(f, yaml.Loader)
+    for x in xinfo:
+      species=x['species']
+      path=x['path']
+      embedding_path=x['embedding_path']
+      if config['scrnah5adduplicateobs']['global']:
+        shell("{scrnah5adduplicateobs_cmd} -d scrnah5adduplicateobs/{wildcards.name} -b {species} -- {path}")
+      else:
+        saturn_label=x['saturn_label']
+        batch_label=x['batch_label']
+        shell("{scrnah5adduplicateobs_cmd} -d scrnah5adduplicateobs/{wildcards.name} -b {species} -s {saturn_label} -t saturn_label -s {batch_label} -t batch_label -- {path}")
+
+    # initial configs
+    xconfig=pd.DataFrame(xinfo)
+    xconfig['path']=[f"scrnah5adduplicateobs/{wildcards.name}/{s}.h5ad" for s in xconfig['species']]
+
+    # subsampling cells by saturn_label
+    if not config['scrnah5adsubsetsamplingbykey']['skip']:
+      for _, row in xconfig[['species', 'path']].iterrows():
+        species, path=row['species'], row['path']
+        shell("{scrnah5adsubsetsamplingbykey_cmd} -d scrnah5adsubsetsamplingbykey/{wildcards.name} -b {species} -- {path}")
+      xconfig['path']=[f"scrnah5adsubsetsamplingbykey/{wildcards.name}/{s}.h5ad" for s in xconfig['species']]
+
+    # filtering by batch_label
+    if not config['scrnah5adsubsetbyvaluecounts']['skip']:
+      for _, row in xconfig[['species', 'path']].iterrows():
+        species, path=row['species'], row['path']
+        shell("{scrnah5adsubsetbyvaluecounts_cmd} -d scrnah5adsubsetbyvaluecounts/{wildcards.name} -b {species} -- {path}")
+      xconfig['path']=[f"scrnah5adsubsetbyvaluecounts/{wildcards.name}/{s}.h5ad" for s in xconfig['species']]
+
+    xconfig=xconfig[['species', 'path', 'embedding_path']]
+    xconfig.to_csv(output[0], sep='\t', index=False)
+
+rule saturntraincrossspecies:
+  input:
+    "{name}.txt",
+  output:
+    outdir=directory("saturntraincrossspecies/{name}/saturn_results"),
+    outfile="saturntraincrossspecies/{name}.h5ad",
+  wildcard_constraints:
+    name="[^/]+",
+  shell:
+    """
+    {saturntraincrossspecies_cmd} -d saturntraincrossspecies/{wildcards.name} -b {wildcards.name} -- {input}
+    shopt -s extglob
+    cp -i {output.outdir}/!(*_ep_*|*_pretrain).h5ad {output.outfile}
+    """
+
+rule saturntrainh5ad2umap:
+  input:
+    indir="saturntraincrossspecies/{name}/saturn_results",
+    infile="saturntraincrossspecies/{name}.h5ad",
+  output:
+    "saturntrainh5ad2umap/{name}.html",
+    "saturntrainh5ad2umap/{name}/{name}.h5ad",
+  wildcard_constraints:
+    name="[^/]+",
+  shell:
+    """
+    function cmd {{
+    local file=$1
+    local bname=$(basename "$1" .h5ad)
+    {saturntrainh5ad2umap_cmd} -d saturntrainh5ad2umap/{wildcards.name}/$bname -b $bname -- $file
+    mergeimg2htmlbyjinja -d saturntrainh5ad2umap/{wildcards.name} -b $bname -- saturntrainh5ad2umap/{wildcards.name}/$bname/figures/*
+    }}
+    source env_parallel.bash
+    env_parallel cmd ::: {input.indir}/*.h5ad
+
+    {saturntrainh5ad2umap_cmd} -d saturntrainh5ad2umap/{wildcards.name} -b {wildcards.name} -- {input.infile}
+    mergeimg2htmlbyjinja -d saturntrainh5ad2umap -b {wildcards.name} -- saturntrainh5ad2umap/{wildcards.name}/figures/*
+    """
+
+rule saturnh5adumap2seuratdimplotsplitby:
+  input:
+    "saturntrainh5ad2umap/{name}/{name}.h5ad",
+  output:
+    "saturnh5adumap2seuratdimplotsplitby/{name}.html",
+  wildcard_constraints:
+    name="[^/]+",
+  shell:
+    """
+    {saturnh5adumap2seuratdimplotsplitby_cmd} -d saturnh5adumap2seuratdimplotsplitby/{wildcards.name} -b {wildcards.name} -- {input}
+    mergeimg2htmlbyjinja -d saturnh5adumap2seuratdimplotsplitby -b {wildcards.name} -- saturnh5adumap2seuratdimplotsplitby/{wildcards.name}/*
+    """
+
+rule saturnh5adumap2seuratclustree:
+  input:
+    "saturntrainh5ad2umap/{name}/{name}.h5ad",
+  output:
+    "saturnh5adumap2seuratclustree/{name}.html",
+  wildcard_constraints:
+    name="[^/]+",
+  shell:
+    """
+    {saturnh5adumap2seuratclustree_cmd} -d saturnh5adumap2seuratclustree/{wildcards.name} -b {wildcards.name} -- {input}
+    mergeimg2htmlbyjinja -d saturnh5adumap2seuratclustree -b {wildcards.name} -- saturnh5adumap2seuratclustree/{wildcards.name}/*
+    """
+
+rule scrnah5adsplitby:
+  input:
+    "saturntraincrossspecies/{name}.h5ad",
+  output:
+    directory("scrnah5adsplitby/{name}")
+  wildcard_constraints:
+    name="[^/]+",
+  shell:
+    """
+    {scrnah5adsplitby_cmd} -d {output} -b {wildcards.name} -- {input}
+    """
+
+rule saturnh5adlatent2cntclassifier_train:
+  input:
+    h5addir="scrnah5adsplitby/{name}",
+    xconfig=get_file,
+  output:
+    outdir=directory("saturnh5adlatent2cntclassifier/{name}/train"),
+    done="saturnh5adlatent2cntclassifier/{name}/train/train.done",
+  wildcard_constraints:
+    name="[^/]+",
+  run:
+    import yaml
+    import pandas as pd
+    with open(input.xconfig, 'r') as f:
+      xconfig=yaml.load(f, yaml.Loader)
+    xconfig=pd.DataFrame(xconfig)
+    trainspcs=xconfig['species'][xconfig['classifier']=='train'].tolist()
+    models=config['saturnh5adlatent2cntclassifier']['model']
+    shell(
+    """
+    function cmd {{
+    local trainspecies=$1
+    local model=$2
+    local infile={input.h5addir}/{wildcards.name}_${{trainspecies}}.h5ad
+    local trainname={wildcards.name}_${{trainspecies}}_${{model}}
+    {saturnh5adlatent2cntclassifier_train_cmd} -d {output.outdir} -b $trainname -m $model -- $infile
+    }}
+    source env_parallel.bash
+    env_parallel cmd ::: {trainspcs} ::: {models}
+    touch {output.done}
+    """
+    )
+
+rule saturnh5adlatent2cntclassifier_predict:
+  input:
+    h5addir="scrnah5adsplitby/{name}",
+    xconfig=get_file,
+    modeldir="saturnh5adlatent2cntclassifier/{name}/train",
+    done="saturnh5adlatent2cntclassifier/{name}/train/train.done",
+  output:
+    outdir=directory("saturnh5adlatent2cntclassifier/{name}/predict"),
+    done="saturnh5adlatent2cntclassifier/{name}/predict/predict.done",
+  wildcard_constraints:
+    name="[^/]+",
+  threads: workflow.cores * 0.9
+  run:
+    import yaml
+    import pandas as pd
+    with open(input.xconfig, 'r') as f:
+      xconfig=yaml.load(f, yaml.Loader)
+    xconfig=pd.DataFrame(xconfig)
+    predictspcs=xconfig['species'][xconfig['classifier']=='predict'].tolist()
+    trainspcs=xconfig['species'][xconfig['classifier']=='train'].tolist()
+    models=config['saturnh5adlatent2cntclassifier']['model']
+    shell(
+    """
+    function cmd {{
+    local predictspecies=$1
+    local trainspecies=$2
+    local model=$3
+    local infile={input.h5addir}/{wildcards.name}_${{predictspecies}}.h5ad
+    local trainname={wildcards.name}_${{trainspecies}}_${{model}}
+    local predictname={wildcards.name}_${{predictspecies}}_${{trainspecies}}_${{model}}
+    local modelfile={input.modeldir}/${{trainname}}_classifier.pbz2
+    {saturnh5adlatent2cntclassifier_predict_cmd} -d {output.outdir} -b $predictname -m $modelfile -- $infile
+    }}
+    source env_parallel.bash
+    env_parallel -j {threads} cmd ::: {predictspcs} ::: {trainspcs} ::: {models}
+    touch {output.done}
+    """
+    )
+
+rule rtable2sankeydiagram_predict:
+  input:
+    indir="saturnh5adlatent2cntclassifier/{name}/predict",
+    done="saturnh5adlatent2cntclassifier/{name}/predict/predict.done",
+  output:
+    outdir=directory("saturnh5adlatent2cntclassifier/{name}/predict/rtable2sankeydiagram"),
+    done="saturnh5adlatent2cntclassifier/{name}/predict/rtable2sankeydiagram/sankey.done",
+  wildcard_constraints:
+    name="[^/]+",
+  threads: workflow.cores * 0.9
+  shell:
+    """
+    function cmd {{
+    local infile=$1
+    local bname=$(basename "$infile" _tab.txt.gz)
+    {rtable2sankeydiagram_cmd} -d {output.outdir} -b $bname -- $infile
+    }}
+    source env_parallel.bash
+    env_parallel -j {threads} cmd ::: {input.indir}/*_tab.txt.gz
+    touch {output.done}
+    """
+
+rule tsvfileaddfromcolumn_predict:
+  input:
+    xconfig=get_file,
+    xpath="{name}.txt",
+    indir="saturnh5adlatent2cntclassifier/{name}/predict",
+    done="saturnh5adlatent2cntclassifier/{name}/predict/predict.done",
+  output:
+    outdir=directory("tsvfileaddfromcolumn/{name}/predict"),
+    done="tsvfileaddfromcolumn/{name}/predict/concat.done",
+  wildcard_constraints:
+    name="[^/]+",
+  run:
+    import yaml
+    import pandas as pd
+    with open(input.xconfig, 'r') as f:
+      xconfig=yaml.load(f, yaml.Loader)
+    xconfig=pd.DataFrame(xconfig)
+    predictspcs=xconfig['species'][xconfig['classifier']=='predict'].tolist()
+    trainspcs=xconfig['species'][xconfig['classifier']=='train'].tolist()
+    models=config['saturnh5adlatent2cntclassifier']['model']
+    xpath=pd.read_csv(input.xpath, sep='\t', header=0)
+    spc2path=dict(zip(xpath['species'].tolist(), xpath['path'].tolist()))
+
+    for predictspecies in predictspcs:
+      for trainspecies in trainspcs:
+        for model in models:
+          path=spc2path[predictspecies].removesuffix('.h5ad')+"_obs.txt.gz"
+          predictname=f"{wildcards.name}_{predictspecies}_{trainspecies}_{model}"
+          srcfile=f"{input.indir}/{predictname}.txt.gz"
+          shell(
+          """
+          {tsvfileaddfromcolumn_cmd} -d {output.outdir} -b "{predictname}" -s "{srcfile}" -- "{path}"
+          """
+          )
+    shell("touch {output.done}")
+
+rule saturncntclassifierpred2tab_predict:
+  input:
+    indir="tsvfileaddfromcolumn/{name}/predict",
+    done="tsvfileaddfromcolumn/{name}/predict/concat.done",
+  output:
+    outdir=directory("tsvfileaddfromcolumn/{name}/predict/saturncntclassifierpred2tab"),
+    done="tsvfileaddfromcolumn/{name}/predict/saturncntclassifierpred2tab/tab.done",
+  wildcard_constraints:
+    name="[^/]+",
+  threads: workflow.cores * 0.9
+  shell:
+    """
+    function cmd {{
+    local infile=$1
+    local bname=$(basename "$infile" .txt.gz)
+    if [ -f $infile ]
+    then
+      {saturncntclassifierpred2tab_cmd} -d {output.outdir} -b $bname -- $infile
+    fi
+    }}
+    source env_parallel.bash
+    env_parallel -j {threads} cmd ::: {input.indir}/*.txt.gz
+    touch {output.done}
+    """
+
+rule rtable2sankeydiagram_tab_predict:
+  input:
+    indir="tsvfileaddfromcolumn/{name}/predict/saturncntclassifierpred2tab",
+    done="tsvfileaddfromcolumn/{name}/predict/saturncntclassifierpred2tab/tab.done",
+  output:
+    outdir=directory("tsvfileaddfromcolumn/{name}/predict/rtable2sankeydiagram"),
+    done="tsvfileaddfromcolumn/{name}/predict/rtable2sankeydiagram/sankey.done",
+  wildcard_constraints:
+    name="[^/]+",
+  threads: workflow.cores * 0.9
+  shell:
+    """
+    function cmd {{
+    local infile=$1
+    local bname=$(basename "$infile" .txt.gz)
+    if [ -f $infile ]
+    then
+      {rtable2sankeydiagram_cmd} -d {output.outdir} -b $bname -- $infile
+    fi
+    }}
+    source env_parallel.bash
+    env_parallel -j {threads} cmd ::: {input.indir}/*.txt.gz
+    touch {output.done}
+    """
+
+rule saturnh5adlatent2cntclassifier_predictproba:
+  input:
+    h5addir="scrnah5adsplitby/{name}",
+    xconfig=get_file,
+    modeldir="saturnh5adlatent2cntclassifier/{name}/train",
+    done="saturnh5adlatent2cntclassifier/{name}/train/train.done",
+  output:
+    outdir=directory("saturnh5adlatent2cntclassifier/{name}/predictproba"),
+    done="saturnh5adlatent2cntclassifier/{name}/predictproba/predictproba.done",
+  wildcard_constraints:
+    name="[^/]+",
+  threads: workflow.cores * 0.9
+  run:
+    import yaml
+    import pandas as pd
+    with open(input.xconfig, 'r') as f:
+      xconfig=yaml.load(f, yaml.Loader)
+    xconfig=pd.DataFrame(xconfig)
+    predictspcs=xconfig['species'][xconfig['classifier']=='predict'].tolist()
+    trainspcs=xconfig['species'][xconfig['classifier']=='train'].tolist()
+    models=config['saturnh5adlatent2cntclassifier']['model']
+    thresholds=config['saturnh5adlatent2cntclassifier']['threshold']
+    shell(
+    """
+    function cmd {{
+    local predictspecies=$1
+    local trainspecies=$2
+    local model=$3
+    local threshold=$4
+    local infile={input.h5addir}/{wildcards.name}_${{predictspecies}}.h5ad
+    local trainname={wildcards.name}_${{trainspecies}}_${{model}}
+    local predictname={wildcards.name}_${{predictspecies}}_${{trainspecies}}_${{model}}_${{threshold}}
+    local modelfile={input.modeldir}/${{trainname}}_classifier.pbz2
+    {saturnh5adlatent2cntclassifier_predictproba_cmd} -d {output.outdir} -b $predictname -m $modelfile -r $threshold -- $infile
+    }}
+    source env_parallel.bash
+    env_parallel -j {threads} cmd ::: {predictspcs} ::: {trainspcs} ::: {models} ::: {thresholds}
+    touch {output.done}
+    """
+    )
+
+rule rtable2sankeydiagram_predictproba:
+  input:
+    indir="saturnh5adlatent2cntclassifier/{name}/predictproba",
+    done="saturnh5adlatent2cntclassifier/{name}/predictproba/predictproba.done",
+  output:
+    outdir=directory("saturnh5adlatent2cntclassifier/{name}/predictproba/rtable2sankeydiagram"),
+    done="saturnh5adlatent2cntclassifier/{name}/predictproba/rtable2sankeydiagram/sankey.done",
+  wildcard_constraints:
+    name="[^/]+",
+  threads: workflow.cores * 0.9
+  shell:
+    """
+    function cmd {{
+    local infile=$1
+    local bname=$(basename "$infile" .txt.gz)
+    {rtable2sankeydiagram_cmd} -d {output.outdir} -b $bname -- $infile
+    }}
+    source env_parallel.bash
+    env_parallel -j {threads} cmd ::: {input.indir}/*_tab.txt.gz {input.indir}/*_max.txt.gz
+    touch {output.done}
+    """
+
+rule tsvfileaddfromcolumn_predictproba:
+  input:
+    xconfig=get_file,
+    xpath="{name}.txt",
+    indir="saturnh5adlatent2cntclassifier/{name}/predictproba",
+    done="saturnh5adlatent2cntclassifier/{name}/predictproba/predictproba.done",
+  output:
+    outdir=directory("tsvfileaddfromcolumn/{name}/predictproba"),
+    done="tsvfileaddfromcolumn/{name}/predictproba/concat.done",
+  wildcard_constraints:
+    name="[^/]+",
+  run:
+    import yaml
+    import pandas as pd
+    with open(input.xconfig, 'r') as f:
+      xconfig=yaml.load(f, yaml.Loader)
+    xconfig=pd.DataFrame(xconfig)
+    predictspcs=xconfig['species'][xconfig['classifier']=='predict'].tolist()
+    trainspcs=xconfig['species'][xconfig['classifier']=='train'].tolist()
+    models=config['saturnh5adlatent2cntclassifier']['model']
+    thresholds=config['saturnh5adlatent2cntclassifier']['threshold']
+    xpath=pd.read_csv(input.xpath, sep='\t', header=0)
+    spc2path=dict(zip(xpath['species'].tolist(), xpath['path'].tolist()))
+
+    for predictspecies in predictspcs:
+      for trainspecies in trainspcs:
+        for model in models:
+          for threshold in thresholds:
+            path=spc2path[predictspecies].removesuffix('.h5ad')+"_obs.txt.gz"
+            predictname=f"{wildcards.name}_{predictspecies}_{trainspecies}_{model}_{threshold}"
+            srcfile=f"{input.indir}/{predictname}.txt.gz"
+            shell(
+            """
+            {tsvfileaddfromcolumn_cmd} -d {output.outdir} -b "{predictname}" -s "{srcfile}" -- "{path}"
+            """
+            )
+    shell("touch {output.done}")
+
+rule saturncntclassifierpred2tab_predictproba:
+  input:
+    indir="tsvfileaddfromcolumn/{name}/predictproba",
+    done="tsvfileaddfromcolumn/{name}/predictproba/concat.done",
+  output:
+    outdir=directory("tsvfileaddfromcolumn/{name}/predictproba/saturncntclassifierpred2tab"),
+    done="tsvfileaddfromcolumn/{name}/predictproba/saturncntclassifierpred2tab/tab.done",
+  wildcard_constraints:
+    name="[^/]+",
+  threads: workflow.cores * 0.9
+  shell:
+    """
+    function cmd {{
+    local infile=$1
+    local bname=$(basename "$infile" .txt.gz)
+    if [ -f $infile ]
+    then
+      {saturncntclassifierpred2tab_cmd} -d {output.outdir} -b $bname -- $infile
+    fi
+    }}
+    source env_parallel.bash
+    env_parallel -j {threads} cmd ::: {input.indir}/*.txt.gz
+    touch {output.done}
+    """
+
+rule rtable2sankeydiagram_tab_predictproba:
+  input:
+    indir="tsvfileaddfromcolumn/{name}/predictproba/saturncntclassifierpred2tab",
+    done="tsvfileaddfromcolumn/{name}/predictproba/saturncntclassifierpred2tab/tab.done",
+  output:
+    outdir=directory("tsvfileaddfromcolumn/{name}/predictproba/rtable2sankeydiagram"),
+    done="tsvfileaddfromcolumn/{name}/predictproba/rtable2sankeydiagram/sankey.done",
+  wildcard_constraints:
+    name="[^/]+",
+  threads: workflow.cores * 0.9
+  shell:
+    """
+    function cmd {{
+    local infile=$1
+    local bname=$(basename "$infile" .txt.gz)
+    if [ -f $infile ]
+    then
+      {rtable2sankeydiagram_cmd} -d {output.outdir} -b $bname -- $infile
+    fi
+    }}
+    source env_parallel.bash
+    env_parallel -j {threads} cmd ::: {input.indir}/*.txt.gz
+    touch {output.done}
+    """
