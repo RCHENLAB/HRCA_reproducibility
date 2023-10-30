@@ -83,5 +83,5 @@ This subfigure systematically calculates differentially expressed genes between 
 - scrnah5ad2bulkdegcondtypebydeseq2: This utility is used to perform differential gene expression analysis between two conditions for cell types from a pseudo-bulk .h5ad file using DESeq2. This utility can be found in the utility directory at [scrnah5ad2bulkdegcondtypebydeseq2](../../utility/scrnah5ad2bulkdegcondtypebydeseq2).
 - deseq2enhancedvolcano.sh: This utility is used to plot an enhanced volcano plot of differentially expressed genes and can be found in the utility directory at [deseq2enhancedvolcano](../../utility/deseq2enhancedvolcano).
 
-The resulting PDf file is the generated volcano plot of differentially expressed genes and has been edited using Illustrator for text.
+The resulting PDF file is the generated volcano plot of differentially expressed genes and has been edited using Illustrator for text.
 
