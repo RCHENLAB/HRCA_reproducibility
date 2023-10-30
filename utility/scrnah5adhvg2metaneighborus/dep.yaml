@@ -1,0 +1,12 @@
+conda:
+  - r-seurat
+  - r-ggplot2
+  - bioconductor-rhdf5
+  - bioconductor-deseq2
+  - bioconductor-metaneighbor
+  - bioconductor-summarizedexperiment
+  - r-gplots
+  - r-rcolorbrewer
+  - scanpy
+bitbucket_R:
+  - lijinbio/jlutils

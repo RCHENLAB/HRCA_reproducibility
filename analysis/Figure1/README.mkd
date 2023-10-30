@@ -59,4 +59,19 @@ mamba install -y -n u_scvi -c pytorch -c nvidia pytorch pytorch-gpu pytorch-cuda
 
   - This HTML can be also accessible at https://htmlpreview.github.io/?https://bcm.box.com/shared/static/asnw2s4um84o1m5y7brjo4iauwfx05g9.html
 
+## Figure 1E
+
+This subfigure evaluates the cell type similarity between snRNA-seq and scRNA-seq datasets. The following files are used to generate this figure.
+
+- HRCA_snRNA_scRNA.h5ad: This is the combined .h5ad file for both snRNA-seq and scRNA-seq datasets. To download the file, please use the following command.
+
+```
+wget -O HRCA_snRNA_scRNA.h5ad https://bcm.box.com/shared/static/twy7a3k30r1pwpwh8dklb6o9zvb3amem.h5ad
+```
+
+- Figure1E.sh: This running script execute two utilities for the analysis.
+  - scrnah5adrawcounts2bulkby: This utility is used to calculate pseudo-bulk for samples summarized by key values and accessible in the utility directory at [scrnah5adrawcounts2bulkby](../../utility/scrnah5adrawcounts2bulkby).
+  - scrnah5adhvg2metaneighborus This utility is used to generate cell type similarity of cell types. It is accessible in the utility directory at [scrnah5adhvg2metaneighborus](../../utility/scrnah5adhvg2metaneighborus).
+
+- Figure1E.pdf: This is the resulting PDF file of cell type similarities.
 
