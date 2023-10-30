@@ -1,4 +1,4 @@
 # Analyses
 
-This folder contains running scripts for specific figures and tables. The running scripts may call some standalone scripts in the [utility](../utility) folder of this repository
+This folder contains running scripts for specific figures and tables. The running scripts may call some standalone scripts in the [utility](../utility) folder of this repository.
 
