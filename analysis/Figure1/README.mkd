@@ -12,7 +12,7 @@ This subfigure is designed to display a pie chart representing the number of cel
 - rplotpiechart.sh: This utility is used to plot the pie chart and can be found in the utility directory at [rplotpiechart](../../utility/rplotpiechart).
 - Figure1B.sh: This running script is used to execute the utility rplotpiechart.sh in order to generate the pie chart with parameters.
 
-The resulting figure image was edited using Illustrator for text labels.
+The resulting [figure image](./Figure1B.pdf) was edited using Illustrator for text labels.
 
 
 
