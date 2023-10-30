@@ -1,0 +1,89 @@
+scrnah5adduplicateobs:
+  condaenv: saturn
+  saturn_label: cluster2
+  batch_label: sampleid
+  global: false
+scrnah5adsubsetsamplingbykey:
+  skip: false
+  condaenv: saturn
+  key: saturn_label
+  nsample: 2000
+  seed: 12345
+scrnah5adsubsetbyvaluecounts:
+  skip: false
+  condaenv: saturn
+  label: batch_label
+  ncell: 10
+saturntraincrossspecies:
+  label: saturn_label
+  batchkey: batch_label
+  condaenv: saturn
+  ngene: 5000
+  nhvg: 10000
+  hvgspan: 1.0
+  mapfile: null
+  epoch: 50
+  gpu: 2
+  seed: 12345
+saturntrainh5ad2umap:
+  condaenv: saturn
+  label:
+  - batch_labels
+  - labels
+  - labels2
+  - ref_labels
+  - species
+  seed: 12345
+  resolution: 0.5
+  neighbor: 15
+  npc: null
+saturnh5adumap2seuratdimplotsplitby:
+  condaenv: saturn
+  group:
+  - labels
+  - labels2
+  - ref_labels
+  split: species
+  height: 6
+  width: 6
+  legendwidth: 1
+saturnh5adumap2seuratclustree:
+  condaenv: saturn
+  group: labels
+  color: species
+  reorder: F
+  numericorder: F
+  height: 7.5
+  width: 6
+scrnah5adsplitby:
+  condaenv: saturn
+  splitby: species
+saturnh5adlatent2cntclassifier:
+  condaenv: saturn
+  model:
+  - LogisticRegression
+  - KNeighborsClassifier
+  - RandomForestClassifier
+  trainlabel: labels
+  predictlabel: labels
+  threshold:
+  - 0.55
+  - 0.9
+  seed: 12345
+rtable2sankeydiagram:
+  condaenv: saturn
+  iteration: 32
+tsvfileaddfromcolumn:
+  key:
+  - predict
+  - predict_max
+saturncntclassifierpred2tab:
+  xlabel:
+  - saturn_label
+  - group1
+  - group2
+  - group3
+  - cluster2
+  ylabel:
+  - predict
+  - predict_max
