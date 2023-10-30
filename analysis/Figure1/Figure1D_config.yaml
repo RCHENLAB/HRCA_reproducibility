@@ -1,0 +1,45 @@
+scrnah5adsubsetbyvaluecounts:
+  label: sampleid
+  ncell: 10
+scrnascvih5ad:
+  condaenv: scvi_gpu
+  batchkey: sampleid
+  nlayer: 2
+  nlatent: 30
+  ntop: 10000
+  flavor: seurat
+  seed: 12345
+  epoch: 20
+  gpu: 2
+  normcounts: false
+scrnascanpycombinerawcountsscvi:
+  obs:
+  - _scvi_batch
+  - _scvi_labels
+  - _scvi_local_l_mean
+  - _scvi_local_l_var
+  invert: true
+scrnah5ad2normscale:
+  scale: false
+scrnah5adumapby:
+  width: 5
+  height: 5
+  label:
+  - DF.classifications
+  - age
+  - cluster1
+  - cluster2
+  - donor
+  - gender
+  - group1
+  - group2
+  - group3
+  - leiden
+  - majorclass
+  - nCount_RNA
+  - nFeature_RNA
+  - pANN
+  - percent.mt
+  - race
+  - sampleid
+  - tissue

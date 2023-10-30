@@ -1,0 +1,31 @@
+* {
+	margin: 3px;
+	padding: 3;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.heading {
+	display: flex;
+}
+h1 {
+	font-size: 14px;
+	padding: 3px;
+}
+h2 {
+	font-size: 14px;
+	padding: 3px;
+}
+div.result {
+	display: block;
+}
+div.img {
+	padding: 3px;
+	display: inline-block;
+	vertical-align: top;
+}
+div.img-wrapper {
+	position: static;
+	padding: 3px;
+	width: 420px;
+	height: 420px;
+	display: block;
+}
