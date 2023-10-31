@@ -1,0 +1,8 @@
+conda:
+  - r-seurat
+  - r-ggplot2
+  - bioconductor-rhdf5
+  - bioconductor-deseq2
+  - bioconductor-summarizedexperiment
+bitbucket_R:
+  - lijinbio/jlutils
