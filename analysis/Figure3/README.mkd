@@ -1,2 +1,28 @@
 # Amacrine and retinal ganglion cells
 
+## Figure 3A and Figure 3C
+
+These two subfigures display data integration for amacrine and retinal ganglion cells from snRNA-seq datasets. The analysis steps closely resemble those in [Figure 1D](../Figure1/README.mkd) and [Figure 2B](../Figure2/README.mkd) and involve using the utility scrnah5adfiles2scviwkfl. For more details, please refer to the corresponding sections and utility directories.
+
+```
+wget -O snRNA_AC_rawcount.h5ad https://bcm.box.com/shared/static/tmcnrsxqxzqitwkz8vuu6cdov7nqvm8k.h5ad
+wget -O snRNA_RGC_rawcount.h5ad https://bcm.box.com/shared/static/1mxr1wh6r9r7rt7z7d0f9fhl2krn6adv.h5ad
+```
+
+One utility, scrnah5adaddmetadatamerge.sh, has been used to add cell type labels to an existing .h5ad file. For example, for amacrine cells, the integrated .h5ad file can be downloaded using the following command:
+
+```
+wget -O snRNA_AC_scVI.h5ad https://bcm.box.com/shared/static/cuucy7nwrezxvgv86gaiyuea4par0a59.h5ad
+wget -O snRNA_RGC_scVI.h5ad https://bcm.box.com/shared/static/yw4tmtxz3vzn62u7gcp538ga2onp5bmr.h5ad
+```
+
+The running script, addcelltype.sh, appends annotated cell types to the existing cell metadata columns. The new metadata can be used to generate a UMAP using the scrnah5adumapby.sh utility. The resulting PNG files, AC_celltype_UMAP.png and RGC_celltype_UMAP.png, are UMAP for amacrine and retinal ganglion cells with annotated cell types.
+
+## Figure 3B and Figure 3E
+
+These two subfigures demonstrate predicted cell type markers for amacrine and retinal ganglion cells, respectively. The analysis steps are summarized in the running script markerdetect.sh. First, a subset of cells was downsampled per cell type using the utility scrnah5adsubsetsamplingbykey.sh to account for rare cell types. The main utility, [scrnah5ad2markerbinaryaurochvg](../../utility/scrnah5ad2markerbinaryaurochvg), was used to calculate candidate marker genes for cell types. The candidate markers are visualized in dot plots using the utility [scrnah5adtwocolmarker2seuratdotplot](../../utility/scrnah5adtwocolmarker2seuratdotplot). The resulting dot plots, snRNA_AC_snRNA_AC_ntop50_SVC_1_f1.pdf and snRNA_RGC_marker.pdf, depict the predicted markers for amacrine and retinal ganglion cell types and have been edited by Illustrator for labeling.
+
+## Figure 3D
+
+This subfigure shows a Sankey diagram of cross-species comparisons for amacrine cells between humans and macaques. The analysis steps resemble those in [Figure 2C](../Figure2/README.mkd). For more details, please refer to the corresponding section.
+

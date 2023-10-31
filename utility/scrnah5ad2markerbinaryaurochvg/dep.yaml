@@ -1,0 +1,7 @@
+conda:
+  - scikit-learn
+  - scanpy
+  - pandas
+  - py-xgboost-gpu
+bitbucket_py:
+  - lijinbio/jlutilspy
