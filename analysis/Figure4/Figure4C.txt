@@ -1,0 +1,4 @@
+First run the scripts in Figure4A
+coembedding_snATAC_snRNA/11downsample_snATAC_matrix.R
+coembedding_snATAC_snRNA/12downsample_snRNA.py
+coembedding_snATAC_snRNA/13dotplot.py
