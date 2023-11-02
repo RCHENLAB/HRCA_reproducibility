@@ -1,0 +1,11 @@
+coembedding_snATAC_snRNA/1archr.R
+coembedding_snATAC_snRNA/2cluster.R
+coembedding_snATAC_snRNA/3callpeak_major.R
+coembedding_snATAC_snRNA/3rmDlt_cluster.R
+coembedding_snATAC_snRNA/4callpeak_major.R
+coembedding_snATAC_snRNA/5assign_celltype.R
+coembedding_snATAC_snRNA/6generate_seurat_archr.R
+coembedding_snATAC_snRNA/7scGlue_pp_general_all_new_top5.py
+coembedding_snATAC_snRNA/8scGlue_coembeddings_general.py
+coembedding_snATAC_snRNA/9pred_celltype_glue.py
+coembedding_snATAC_snRNA/10facet_plot.py

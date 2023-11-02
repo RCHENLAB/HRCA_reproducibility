@@ -1,2 +1,39 @@
 # HRCA: chromatin accessibility landscape
 
+The sub figures of Figure 4 are involved in the analysis in the four folders: coembedding_snATAC_snRNA, snATAC_downstream, MPRA, and regulon.
+
+## Figure 4A
+
+This subfigure is to display the co-embedding of the full snATAC-seq dataset and downsampled snRNA-seq dataset. To generate Figure 4A, please sequentially run the scripts listed Figure4A.txt.  
+
+## Figure 4B
+
+This subfigure is to display the cell type distribution of the full snATAC-seq dataset. To generate Figure 4B, please sequentially run the scripts listed in Figure4B_D.txt.
+
+## Figure 4C
+
+This subfigure is to show the gene expression and activity score in the downsampled snRNA-seq and snATAC-seq datasets. To generate Figure 4C, please sequentially run the scripts in Figure4C.txt.
+
+## Figure 4D
+
+This subfigure is to show the genomic region distribution of snATAC-seq peaks in individual cell class context. To generate Figure 4D, please sequentially run the scripts listed in Figure4B_D.txt.
+
+## Figure 4E
+
+This subfigure is to compare the open chromatin regions identified by snATAC-seq and bulk ATAC-seq. To generate Figure 4E, please sequentially run the scripts listed in Figure4E_F.txt.
+
+## Figure 4F
+
+This subfigure is to compare the cell class specificity of the open chromatin regions identified by snATAC-seq and bulk ATAC-seq. To generate Figure 4F, please sequentially run the scripts listed in Figure4E_F.txt.
+
+## Figure 4G
+
+This subfigure is to show the chromatin accessibility and gene expression of linked open chromatin region - gene pairs across cell classes identified from snATAC-seq. To generate Figure 4G, please sequentially run the scripts listed in Figure4G.txt. 
+
+## Figure 4H
+
+This subfigure is the volcano plot to show the activity of cis-regulatory sequences tested in massively parallel reporter assays (MPRA). To generate Figure 4H, please sequentially run the scripts listed in Figure4H.txt. 
+
+## Figure 4I
+
+This subfigure is to show the distribution of regulon specificity score (RSS) across cell classes. To generate Figure 4I, please sequentially run the scripts listed in Figure4I.txt. 
