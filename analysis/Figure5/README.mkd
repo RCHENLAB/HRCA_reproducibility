@@ -1,6 +1,6 @@
 # The HRCA enables uncovering cell-type-specific gene regulatory circuits
 
-The sub figures of Figure 5 are involved in the analysis in the folder: BC_regulon.
+The sub figures of Figure 5 are involved in the analysis in one folder of utility: BC_regulon.
 
 ## Figure 5A
 
