@@ -1,2 +1,28 @@
 # The HRCA enables uncovering cell-type-specific gene regulatory circuits
 
+The sub figures of Figure 5 are involved in the analysis in one folder of utility: BC_regulon.
+
+## Figure 5A
+
+This subfigure is a heatmap to show gene expression of transcription factors (TFs, including activator and repressor) and enrichment of TF motifs in open chromatin regions. To generate Figure 5A, please sequentially run the scripts listed in Figure5A.txt.  
+
+## Figure 5B
+
+This subfigure is to show the overlapping of targeted regions of TFs across BC cell types. To generate Figure 5B, please sequentially run the scripts listed in Figure5B_C.txt.
+
+## Figure 5C
+
+This subfigure is to show the overlapping of targeted genes of TFs across BC cell types. To generate Figure 5C, please sequentially run the scripts in Figure5B_C.txt.
+
+## Figure 5D
+
+This subfigure is to show the regulatory networks of TFs in four BC types: DB3a, DB3b, BB and GB. To generate Figure 5D, please sequentially run the scripts listed in Figure5D.txt.
+
+## Figure 5E
+
+This subfigure is to show the area under ROC of using the chromatin accessibility of BC cell type TF targeted regions through logistic regression and SVM models. To generate Figure 5E, please sequentially run the scripts listed in Figure5E.txt.
+
+## Figure 5F
+
+This subfigure is to show the module (correlation) of TFs across BC types. To generate Figure 5F, please sequentially run the scripts listed in Figure5F.txt.
+

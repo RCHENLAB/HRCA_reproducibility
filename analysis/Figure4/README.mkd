@@ -1,6 +1,6 @@
 # HRCA: chromatin accessibility landscape
 
-The sub figures of Figure 4 are involved in the analysis in the four folders: coembedding_snATAC_snRNA, snATAC_downstream, MPRA, and regulon.
+The sub figures of Figure 4 are involved in the analysis in the four folders of utility: coembedding_snATAC_snRNA, snATAC_downstream, MPRA, and regulon.
 
 ## Figure 4A
 

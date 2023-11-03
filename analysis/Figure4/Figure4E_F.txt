@@ -1,7 +1,7 @@
 First run the scripts in Figure4A
-snATAC_downstream/4compare_bulk_snATAC_plot.R
-snATAC_downstream/5liftOver_bulk_hg19_hg38.R
-snATAC_downstream/6compare_bulk_snATAC.sh
-snATAC_downstream/7census_peak.sh
-snATAC_downstream/8peak_celltype_num.pl
-snATAC_downstream/9bulk_snATAC_plot.R
+utility/snATAC_downstream/4compare_bulk_snATAC_plot.R
+utility/snATAC_downstream/5liftOver_bulk_hg19_hg38.R
+utility/snATAC_downstream/6compare_bulk_snATAC.sh
+utility/snATAC_downstream/7census_peak.sh
+utility/snATAC_downstream/8peak_celltype_num.pl
+utility/snATAC_downstream/9bulk_snATAC_plot.R

@@ -1,3 +1,3 @@
 First run the scripts in Figure4A
-snATAC_downstream/10snATAC_peak_analysis.R
-snATAC_downstream/11snATAC_peak_plot.R
+utility/snATAC_downstream/10snATAC_peak_analysis.R
+utility/snATAC_downstream/11snATAC_peak_plot.R
