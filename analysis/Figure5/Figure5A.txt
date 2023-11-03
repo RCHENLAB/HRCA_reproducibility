@@ -1,0 +1,2 @@
+Run the scripts in BC_celltype_regulon.txt
+utility/BC_regulon/11scenic_heatmap.py

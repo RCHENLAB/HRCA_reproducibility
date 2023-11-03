@@ -1,4 +1,4 @@
 First run the scripts in Figure4A
-snATAC_downstream/1add_snATAC_celltype.R
-snATAC_downstream/2call_peak_celltype.R
-snATAC_downstream/3sum_peak_celltype.R
+utility/snATAC_downstream/1add_snATAC_celltype.R
+utility/snATAC_downstream/2call_peak_celltype.R
+utility/snATAC_downstream/3sum_peak_celltype.R

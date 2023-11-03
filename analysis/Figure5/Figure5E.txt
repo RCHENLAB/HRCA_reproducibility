@@ -1,0 +1,2 @@
+Run the scripts in BC_celltype_regulon.txt
+utility/BC_regulon/14predict_celltype_with_region.py
