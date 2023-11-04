@@ -1,0 +1,4 @@
+run the scripts in DEG_analysis.txt 
+utility/DEG/14GO_analysis_run.sh
+utility/DEG/15GO_gsea_general.sh
+utility/DEG/16GO_heatmap_general.sh

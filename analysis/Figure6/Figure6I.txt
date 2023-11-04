@@ -1,0 +1,2 @@
+run the scripts in DEG_analysis.txt 
+utility/DEG/18example_gene_boxplot_ageGender_sel.R

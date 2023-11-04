@@ -1,2 +1,40 @@
 # Differential gene expression associated with age and sex
 
+The sub figures of Figure 6 are involved in the analysis in one folder of utility: DEG.
+
+## Figure 6A
+
+This subfigure is to show gene expression change in rod cells during aging identified by linear mixed effect model. To generate Figure 6A, please sequentially run the scripts listed in Figure6A.txt.
+
+## Figure 6B
+
+This subfigure is to show the number of overlapped age-dependent DEGs across retinal cell classes. To generate Figure 6B, please sequentially run the scripts listed in Figure6B.txt.
+
+## Figure 6C
+
+This subfigure is to show the number of significant differentially expressed genes between adjacent age intervals identified by sliding window analysis. To generate Figure 6C, please sequentially run the scripts in Figure6C.txt.
+
+
+## Figure 6D
+
+This subfigure is to show the pathways enriched of age-dependent DEGs. To generate Figure 6D, please sequentially run the scripts listed in Figure6D_G_H.txt.
+
+## Figure 6E
+
+This subfigure is to show gene expression change of example DEGs during aging. To generate Figure 6E, please sequentially run the scripts listed in Figure6E.txt. 
+
+## Figure 6F
+
+This subfigure is to show the number of overlapped sex-dependent DEGs across retinal cell classes. To generate Figure 6F, please sequentially run the scripts listed in Figure6F.txt.
+
+## Figure 6G
+
+This subfigure is to show the pathways enriched of sex-dependent DEGs. To generate Figure 6G, please sequentially run the scripts listed in Figure6D_G_H.txt.
+
+## Figure 6H
+
+This subfigure is to show the pathways enriched of DEGs associated with the interaction of sex and aging. To generate Figure 6H, please sequentially run the scripts listed in Figure6D_G_H.txt.
+
+## Figure 6I
+
+This subfigure is to show gene expression change of example DEGs associated with the interaction of sex and aging. To generate Figure 6I, please sequentially run the scripts listed in Figure6I.txt.

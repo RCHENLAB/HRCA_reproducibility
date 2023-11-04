@@ -1,0 +1,7 @@
+utility/DEG/1gene_count_per_sample.py
+utility/DEG/2summarize_gene_count.py
+utility/DEG/3gene_count_per_celltype.pl
+utility/DEG/4norm_gene_exp_batch.R
+utility/DEG/5cor.R
+utility/DEG/6fillter_sample.R
+utility/DEG/7DEG_dream.R
