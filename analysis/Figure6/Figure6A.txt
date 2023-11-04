@@ -1,0 +1,2 @@
+run the scripts in DEG_analysis.txt
+utility/DEG/8DEG_loess_heatmap.R

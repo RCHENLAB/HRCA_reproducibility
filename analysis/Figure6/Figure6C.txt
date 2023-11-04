@@ -1,0 +1,4 @@
+run the scripts in DEG_analysis.txt
+utility/DEG/9format_DEswan.pl
+utility/DEG/10DEswan.R
+utility/DEG/13DEswan_qval.R
