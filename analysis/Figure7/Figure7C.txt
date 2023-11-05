@@ -1,0 +1,11 @@
+utility/finemap/16_1anno_eQTL.R
+utility/finemap/16format_eQTL.pl
+utility/finemap/17prepare_torus_profile_eQTL.pl
+utility/finemap/18run_torus_eQTL.sh
+utility/finemap/19generate_r_plink_merged_eQTL.sh
+utility/finemap/20suise_merged_uniq_handle_eQTL.sh
+utility/finemap/21pip_plot_merged_eQTL.sh
+utility/finemap/22PIP_num_merged_eQTL.sh
+utility/finemap/23anno_pip_eQTL.sh
+utility/finemap/24summarize_gene_upset_eQTL.sh
+utility/finemap/24summarize_gene_upset_eQTL.R

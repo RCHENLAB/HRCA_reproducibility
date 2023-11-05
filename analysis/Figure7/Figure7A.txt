@@ -1,0 +1,13 @@
+LDSC for snATAC-seq peak
+utility/LDSC/1liftover_peak_hg38ToHg19.sh
+utility/LDSC/2ldsc_annotate_peak.sh
+utility/LDSC/3ldsc_format_summaryStat.sh
+utility/LDSC/4run_ldsc_celltype_peak.sh
+utility/LDSC/5summarize_ldsc_result.sh
+utility/LDSC/6dotPlot.R
+MAGMA for snRNA-seq gene expression
+utility/MAGMA/1mungeSumstat.R
+utility/MAGMA/2map_snpToGene.R
+utility/MAGMA/3run_MAGMA.R
+utility/MAGMA/4summarize_MAGMA_result.pl
+utility/MAGMA/5dotPlot.R
