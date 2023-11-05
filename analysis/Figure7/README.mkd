@@ -1,2 +1,21 @@
 # Leveraging the HRCA to study GWAS and eQTL loci
 
+The sub figures of Figure 6 are involved in the analysis in the three folders of utility: LDSC, MAGMA, finemap
+
+## Figure 7A
+
+This subfigure is to show enrichment of GWAS variants in retinal cell classes based on snATAC-seq peaks. To generate Figure 7A, please sequentially run the scripts listed in Figure7A.txt.
+
+## Figure 7B
+
+This subfigure is to show the distribution of finemapped GWAS variants in various genomic regions. To generate Figure 7B, please sequentially run the scripts listed in Figure7B.txt.
+
+## Figure 7C
+
+This subfigure is to show the distribution of finemapped eQTL variants in various genomic regions. To generate Figure 7C, please sequentially run the scripts in Figure7C.txt.
+
+
+## Figure 7D
+
+This subfigure is to show one example of finemapped GWAS variants. To generate Figure 7D, please sequentially run the scripts listed in Figure7D.txt.
+
