@@ -1,6 +1,5 @@
 utility/coembedding_snATAC_snRNA/1archr.R
 utility/coembedding_snATAC_snRNA/2cluster.R
-utility/coembedding_snATAC_snRNA/3callpeak_major.R
 utility/coembedding_snATAC_snRNA/3rmDlt_cluster.R
 utility/coembedding_snATAC_snRNA/4callpeak_major.R
 utility/coembedding_snATAC_snRNA/5assign_celltype.R
