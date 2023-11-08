@@ -14,7 +14,7 @@ The repositories below are also developed and utilized in the HRCA.
 
 ## References
 
-HRCA paper: [Li et al., 2023](https://doi.org/10.1101/2023.11.07.566105)
+The HRCA paper: [Li et al.](https://doi.org/10.1101/2023.11.07.566105), bioRxiv 2023.
 
 ## Questions
 
