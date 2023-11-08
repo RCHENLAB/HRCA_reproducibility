@@ -22,7 +22,7 @@ This subfigure displays the benchmark study of the five data integration methods
 
 This subfigure shows the UMAP of snRNA-seq data integration using scVI. The following files are used to generate this figure:
 
-- snRNA.h5ad: This is the input files for data integration. It contains the raw count matrix for snRNA-seq datasets with metadata. To download the file, please use the following data collection in CELLxGENE at https://cellxgene.cziscience.com/collections/4c6eaf5c-6d57-4c76-b1e9-60df8c655f1e.
+- HRCA_snRNA.h5ad: This is the input files for data integration. It contains the raw count matrix for snRNA-seq datasets with metadata. To download the file, please use the data collection in CELLxGENE at https://cellxgene.cziscience.com/collections/4c6eaf5c-6d57-4c76-b1e9-60df8c655f1e.
 
 - Installing scVI via Conda:
 
@@ -59,11 +59,7 @@ mamba install -y -n u_scvi -c pytorch -c nvidia pytorch pytorch-gpu pytorch-cuda
 
 This subfigure evaluates cell type similarity between snRNA-seq and scRNA-seq datasets. The following files are used to generate this figure.
 
-- HRCA_snRNA_scRNA.h5ad: This is the combined .h5ad file for both snRNA-seq and scRNA-seq datasets. To download the file, please use the following command:
-
-```
-wget -O HRCA_snRNA_scRNA.h5ad https://bcm.box.com/shared/static/twy7a3k30r1pwpwh8dklb6o9zvb3amem.h5ad
-```
+- HRCA_scRNA.h5ad: This file contains the raw count matrix for scRNA-seq datasets with metadata. To download the file, please use the data collection in CELLxGENE at https://cellxgene.cziscience.com/collections/4c6eaf5c-6d57-4c76-b1e9-60df8c655f1e.
 
 - Figure1E.sh: This running script executes two utilities for the analysis:
   - scrnah5adrawcounts2bulkby: This utility is used to calculate pseudo-bulk for samples summarized by key values and can be found in the utility directory at [scrnah5adrawcounts2bulkby](../../utility/scrnah5adrawcounts2bulkby).
