@@ -22,9 +22,7 @@ This subfigure displays the benchmark study of the five data integration methods
 
 This subfigure shows the UMAP of snRNA-seq data integration using scVI. The following files are used to generate this figure:
 
-- snRNA.h5ad: This is the input files for data integration. It contains the raw count matrix for snRNA-seq datasets with metadata. To download the file, please use the following data collection in CELLxGENE:
-
-https://cellxgene.cziscience.com/collections/4c6eaf5c-6d57-4c76-b1e9-60df8c655f1e
+- snRNA.h5ad: This is the input files for data integration. It contains the raw count matrix for snRNA-seq datasets with metadata. To download the file, please use the following data collection in CELLxGENE at https://cellxgene.cziscience.com/collections/4c6eaf5c-6d57-4c76-b1e9-60df8c655f1e.
 
 - Installing scVI via Conda:
 
