@@ -23,6 +23,8 @@ To calculate pseudo-bulk for samples summarized by keys (`-k|--key`).
 
 INFILE is a .h5ad file.
 
+Do not use "scrnah5adrawcounts2pseudobulk" and "scrnah5adpseudobulk2normmedian". Use "scrnah5adrawcounts2bulkby" and "scrnah5adbulkby2normmedian" instead.
+
 \b
 Example:
   f=/storage/singlecell/jinli/wkfl/atlashumanprj/integration/snRNA/cross_map/preproc/scrnah5adsplitby/snRNA_BC.h5ad

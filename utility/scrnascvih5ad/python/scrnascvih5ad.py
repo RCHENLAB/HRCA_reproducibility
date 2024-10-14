@@ -54,7 +54,7 @@ if normcounts:
 	sc.write(filename=f'{bname}_denoised.h5ad', adata=denoised)
 
 sc.pp.neighbors(x, use_rep='X_scVI', random_state=seed)
-sc.tl.leiden(x, resolution=1, random_state=seed)
+sc.tl.leiden(x, resolution=0.618, random_state=seed)
 sc.tl.umap(x, random_state=seed)
 
 sc.set_figure_params(dpi_save=500, figsize=(5, 5))

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # vim: set noexpandtab tabstop=2:
 
-args=$(getopt -o hd:b:W:H:l:te: -l help,outdir:,bname:,width:,height:,label:,notitle,condaenv: --name "$0" -- "$@") || exit "$?"
+args=$(getopt -o hd:b:W:H:l:tf:e: -l help,outdir:,bname:,width:,height:,label:,notitle,format:,condaenv: --name "$0" -- "$@") || exit "$?"
 eval set -- "$args"
 
 absdir=$(dirname $(readlink -f "$0"))
@@ -11,6 +11,7 @@ outdir=.
 width=5
 height=5
 title=None
+format=png
 while true
 do
 	case "$1" in
@@ -40,6 +41,10 @@ do
 		-t|--notitle)
 			title="''"
 			shift
+			;;
+		-f|--format)
+			format=$2
+			shift 2
 			;;
 		-e|--condaenv)
 			condaenv=$2
@@ -81,6 +86,7 @@ mkdir -p "$outdir" && cd "$outdir" && pycmd.sh \
 	-e "height=$height" \
 	-e "label=$(basharr2pylist.sh -c -- "${label[@]}")" \
 	-e "title=$title" \
+	-e "format='$format'" \
 	-s "$absdir/python/$scriptname.py"
 }
 

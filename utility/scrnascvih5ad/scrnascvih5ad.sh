@@ -96,21 +96,27 @@ then
 	fi
 fi
 
-if ! [[ $gpu ]]
+## legacy:
+## Used on the Taco server at BCM
+## if ! [[ $gpu ]]
+## then
+## 	host=$(hostname)
+## 	if [[ $host == mhgcp-g00.grid.bcm.edu ]]
+## 	then
+## 		gpu=$((RANDOM%2))
+## 	elif [[ $host == mhgcp-g01.grid.bcm.edu ]]
+## 	then
+## 		gpu=$((RANDOM%4))
+## 	else
+## 		ngpu=$(ngpu.sh)
+## 		gpu=$((RANDOM%${ngpu}))
+## 	fi
+## fi
+
+if [[ $gpu ]]
 then
-	host=$(hostname)
-	if [[ $host == mhgcp-g00.grid.bcm.edu ]]
-	then
-		gpu=$((RANDOM%2))
-	elif [[ $host == mhgcp-g01.grid.bcm.edu ]]
-	then
-		gpu=$((RANDOM%4))
-	else
-		ngpu=$(ngpu.sh)
-		gpu=$((RANDOM%${ngpu}))
-	fi
+	export CUDA_VISIBLE_DEVICES=$gpu
 fi
-export CUDA_VISIBLE_DEVICES=$gpu
 
 set -xe
 local f=$(abspath.sh "$1")

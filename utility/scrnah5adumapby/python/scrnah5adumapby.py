@@ -24,11 +24,19 @@ for splitby in label:
 
 	ncolor=len(x.obs[splitby].value_counts())
 	if ncolor<100:
-		sc.pl.umap(x, color=splitby, frameon=False, show=False, title=title, save=f'{bname}_umap_{splitby}_wolabel.png')
-		sc.pl.umap(x, color=splitby, frameon=False, show=False, title=title, save=f'{bname}_umap_{splitby}_ondata.png'
-			, legend_loc='on data', legend_fontsize='xx-small', legend_fontweight='normal'
+		sc.pl.umap(x, color=splitby, frameon=False, show=False, title=title, save=f"{bname}_umap_{splitby}_wolabel.{format}")
+		sc.pl.umap(x, color=splitby, frameon=False, show=False, title=title, save=f"{bname}_umap_{splitby}_ondata.{format}",
+			legend_loc='on data',
+			legend_fontsize='xx-small',
+			legend_fontweight='normal',
+			)
+		sc.pl.umap(x, color=splitby, frameon=False, show=False, title=title, save=f"{bname}_umap_{splitby}_fontline.{format}",
+			legend_loc='on data',
+			legend_fontsize='xx-small',
+			legend_fontweight='normal',
+			legend_fontoutline=1,
 			)
 	else:
 		palette=sns.husl_palette(ncolor)
-		sc.pl.umap(x, color=splitby, palette=palette, frameon=False, show=False, title=title, save=f'{bname}_umap_{splitby}_wolabel.png')
-		sc.pl.umap(x, color=splitby, palette=palette, frameon=False, show=False, title=title, save=f'{bname}_umap_{splitby}_ondata.png') # duplicate
+		sc.pl.umap(x, color=splitby, palette=palette, frameon=False, show=False, title=title, save=f"{bname}_umap_{splitby}_wolabel.{format}")
+		sc.pl.umap(x, color=splitby, palette=palette, frameon=False, show=False, title=title, save=f"{bname}_umap_{splitby}_ondata.{format}") # duplicate
