@@ -33,7 +33,7 @@ tmp=ad.AnnData(
 	X=np.asarray(np.stack(xx.values)),
 	obs=pd.DataFrame(
 		xx.index.tolist(),
-		index=map(lambda x: separator.join(x), xx.index.values) if len(key)>1 else xx.index.values,
+		index=map(lambda x: separator.join(x), xx.index.values) if len(key)>1 else xx.index.values.tolist(),
 		columns=key,
 		),
 	var=pd.DataFrame(index=x.var.index),

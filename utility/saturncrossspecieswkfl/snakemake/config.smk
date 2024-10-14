@@ -18,7 +18,7 @@ if config['condaenv']=='None':
 if 'scrnah5adduplicateobs' not in config:
 	config['scrnah5adduplicateobs']={
 		'condaenv': config['condaenv'],
-		'saturn_label': 'cluster2',
+		'saturn_label': 'celltype',
 		'batch_label': 'sampleid',
 		'global': False,
 	}
@@ -46,7 +46,7 @@ if 'scrnah5adsubsetsamplingbykey' not in config:
 		'skip': False,
 		'condaenv': config['condaenv'],
 		'key': 'saturn_label',
-		'nsample': 5000,
+		'nsample': 2000,
 		'seed': 12345,
 	}
 if config['condaenv']: # set a higher priority for the option
@@ -91,12 +91,12 @@ if 'saturntraincrossspecies' not in config:
 		'label': 'saturn_label',
 		'batchkey': 'batch_label',
 		'condaenv': config['condaenv'],
-		'ngene': 2000,
+		'ngene': 5000,
 		'nhvg': 8000,
 		'hvgspan': 1.0,
 		'mapfile': None,
 		'epoch': 50,
-		'gpu': -1,
+		'gpu': 0,
 		'seed': 12345,
 	}
 if config['condaenv']: # set a higher priority for the option
@@ -224,7 +224,8 @@ if 'saturnh5adlatent2cntclassifier' not in config:
 	config['saturnh5adlatent2cntclassifier']={
 		'condaenv': config['condaenv'],
 		# 'model': ['LogisticRegression', 'SVC', 'KNeighborsClassifier', 'RandomForestClassifier', 'SVClinear', 'SGDClassifier', 'GradientBoostingClassifier', 'MultinomialNB', 'NeighborhoodComponentsAnalysis'],
-		'model': ['LogisticRegression', 'SVC', 'KNeighborsClassifier', 'RandomForestClassifier', 'SVClinear', 'SGDClassifier', 'MultinomialNB'],
+		# 'model': ['LogisticRegression', 'SVC', 'KNeighborsClassifier', 'RandomForestClassifier', 'SVClinear', 'SGDClassifier', 'MultinomialNB'],
+		'model': ['LogisticRegression', 'KNeighborsClassifier', 'RandomForestClassifier'],
 		'trainlabel': 'labels',
 		'predictlabel': 'labels',
 		'threshold': [0.55, 0.9],

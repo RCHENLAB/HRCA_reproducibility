@@ -17,7 +17,7 @@ CONTEXT_SETTINGS=dict(help_option_names=['-h', '--help'])
 @click.option('-e', '--condaenv', type=click.STRING, help='Conda environment.')
 @click.option('-s', '--seed', type=click.INT, default=12345, show_default=True, help='Random seed.')
 @click.option('-l', '--label', type=click.STRING, default='celltype', help='Label of input data.')
-@click.option('-g', '--gpu', type=click.INT, default=-1, show_default=True, help='A GPU device.')
+@click.option('-g', '--gpu', type=click.INT, default=0, show_default=True, help='A GPU device.')
 @click.option('-m', '--ngene', type=click.INT, default=2000, show_default=True, help='The number of macrogenes.')
 @click.option('-n', '--nhvg', type=click.INT, default=8000, show_default=True, help='The number of HVGs.')
 @click.option('-v', '--hvgspan', type=click.FLOAT, default=1.0, show_default=True, help='HVG span for seurat_v3.')
@@ -85,12 +85,8 @@ Authors: Jin Li <lijin.abc@gmail.com>
 		f"--centroids_init_path '{bname}_centroids.pkl'",
 		]
 
-	if gpu<0:
-		if socket.gethostname()=='mhgcp-g00.grid.bcm.edu':
-			gpu=random.randint(0, 1)
-		elif socket.gethostname()=='mhgcp-g01.grid.bcm.edu':
-			gpu=random.randint(0, 3)
-	exprs+=[f"--device_num {gpu}"]
+	if gpu>0:
+		exprs+=[f"--device_num {gpu}"]
 
 	if mapfile:
 		exprs+=[

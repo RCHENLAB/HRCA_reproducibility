@@ -60,12 +60,11 @@ Authors: Jin Li <lijin.abc@gmail.com>
 		cmdstr+=[f"--configfile {configfile}"]
 
 	if dryrun: # dry-run
-		cmdstr+=[f"-n -p"]
+		cmdstr+=[f"--dry-run --printshellcmds"]
 
 	else: # running
 		cmdstr+=[
-			f"-r -p --debug-dag",
-			f"--stats Snakefile_{nowtimestr}.stats",
+			f"--printshellcmds --debug-dag --skip-script-cleanup --verbose",
 			]
 
 	os.chdir(outdir)
