@@ -102,3 +102,7 @@ wget -O BC5A_D.h5ad https://bcm.box.com/shared/static/0sr0mqpz2zwlmp89gvl98tds0s
 
 The running script, Figure2F.sh, executes the two utilities, scrnah5adrawcounts2bulkby and scrnah5adhvg2metaneighborus, to generate the cell type similarities among BC5A-D in mice and their mapped cell types in humans, and macaques. Figure2F.pdf is the resulting PDF file for the cell type similarity matrix, which has been edited using Illustrator for labeling.
 
+## Extended Figure 3D
+
+This subfigure presents the differential gene expression analysis between GB and BB, performed using the scrnah5ad2degcontrastpairbydeseq2 utility. The script FigureE3D.sh runs two commands, scrnah5adrawcounts2bulkby and scrnah5ad2degcontrastpairbydeseq2, to generate pseudo-bulk measurements for cell types per donor and conduct a paired differential gene expression test using DESeq2. The file HRCA_snRNA_BC_sizefactor_hist.pdf shows the distribution of size factors for the pseudo-bulk measurements, while HRCA_snRNA_BC_celltype_GBVsBB.txt.gz contains the differential gene expression results, which are also presented in Table S6.
+
