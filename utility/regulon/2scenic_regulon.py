@@ -185,6 +185,8 @@ import numpy as np
 scplus_obj = create_SCENICPLUS_object(
     GEX_anndata = adata, #adata.raw.to_adata(),
     cisTopic_obj = cistopic_obj,
+    ACC_prefix = 'ACC_',
+    GEX_prefix = 'GEX_',
     menr = menr,
     multi_ome_mode=False,
     nr_metacells=int(metacell_num),
@@ -278,7 +280,7 @@ try:
         export_to_loom_file = True,
         export_to_UCSC_file = True,
         path_bedToBigBed = '/storage/chen/home/jw29/software',
-        n_cpu = 1,
+        n_cpu = 5,
         _temp_dir = os.path.join(tmp_dir, 'ray_spill'))
 except Exception as e:
     #in case of failure, still save the object
@@ -339,7 +341,7 @@ score_eRegulons(scplus_obj,
                 enrichment_type= 'region',
                 auc_threshold = 0.05,
                 normalize = False,
-                n_cpu = 1)
+                n_cpu = 5)
 score_eRegulons(scplus_obj,
                 gene_ranking,
                 eRegulon_signatures_key = 'eRegulon_signatures_filtered',
@@ -347,7 +349,7 @@ score_eRegulons(scplus_obj,
                 enrichment_type = 'gene',
                 auc_threshold = 0.05,
                 normalize= False,
-                n_cpu = 1)
+                n_cpu = 5)
 
 from scenicplus.dimensionality_reduction import run_eRegulons_tsne, run_eRegulons_umap
 run_eRegulons_umap(
