@@ -85,7 +85,7 @@ The following two UMAPs display the embeddings of the full 3.1 million cells in 
 
 In the reference model, the contingency table on the left shows example cell type labels, comparing self-predicted labels with input labels. High self-prediction metrics, such as a 99.41% F1 score, demonstrate the consistent classification accuracy of the trained reference model.
 
-| HRCA Reference Model: contingency table | HRCA Reference model: self-prediction metrics |
+| HRCA Reference Model: contingency table | self-prediction metrics |
 |---------|---------|
 | <img src="figures/HRCA_scArches_QC_tab.png" alt="HRCA Reference Model: contingency table" width="450"> | <img src="figures/HRCA_reference_metric.png" alt="HRCA Reference model: self-prediction metrics" width="150"> |
 

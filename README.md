@@ -12,6 +12,12 @@ The repositories below are also developed and utilized in the HRCA.
 
 2. Scripts related to the benchmark study, integration pipeline, and label transfer using scArches are available at https://github.com/theislab/HRCA-reproducibility
 
+## HRCA v1.0 reference model (./scArches)
+
+Please refer to [scArches](./scArches) for a brief tutorial on training the reference model for HRCA v1.0 and performing label transfer using the trained reference model with scArches.
+
+The HRCA v1.0 reference model is available for download on Zenodo at https://doi.org/10.5281/zenodo.14014720.
+
 ## References
 
 The HRCA paper: [Li et al.](https://doi.org/10.1101/2023.11.07.566105), bioRxiv 2023.
