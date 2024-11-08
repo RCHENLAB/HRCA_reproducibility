@@ -4,13 +4,23 @@ This repository comprises code and analyses for the Human Retina Cell Atlas (HRC
 
 ## File organization for figures and tables
 
-The main code can be found in the [analysis](./analysis) directory of this repository. The subdirectories are organized according to the main figures corresponding to the manuscript. Each figure folder contains a document file that explains the running script, input, and output files. The [utility](./utility) folder comprises standalone scripts that have been used in multiple places.
+The main code can be found in the [analysis](./analysis) directory of this repository. The subdirectories are organized according to the main figures corresponding to the manuscript. Each figure folder contains a document file that explains the running script, input, and output files. The [utility](./utility) folder comprises standalone scripts that have been used in multiple places. Additionally, two other repositories -- the [preprocessing pipeline](https://github.com/lijinbio/cellqc) and [benchmark scripts](https://github.com/theislab/HRCA-reproducibility) -- have also been developed and utilized in the HRCA.
 
-The repositories below are also developed and utilized in the HRCA.
+## HRCA Reference Model with scArches
 
-1. The pipeline to process the unpublished and collected public datasets is accessible at https://github.com/lijinbio/cellqc
+Please refer to [scArches](./scArches) for a brief tutorial on training the reference model for HRCA v1.0 and performing label transfer using the trained reference model with scArches.
 
-2. Scripts related to the benchmark study, integration pipeline, and label transfer using scArches are available at https://github.com/theislab/HRCA-reproducibility
+The HRCA v1.0 reference model with scArches is available for download on Zenodo at https://doi.org/10.5281/zenodo.14014720.
+
+## HRCA on Interactive Browsers
+
+HRCA can be accessed through several interactive web browsers, including:
+
+- [HCA Data Portal](https://data.humancellatlas.dev.clevercanary.com/hca-bio-networks/eye)
+- [CELLxGENE](https://cellxgene.cziscience.com/collections/4c6eaf5c-6d57-4c76-b1e9-60df8c655f1e)
+- [UCSC Cell Browser](https://retina.cells.ucsc.edu)
+- [Broad Single Cell Portal](https://singlecell.broadinstitute.org/single_cell/study/SCP2805)
+- [Cell Annotation Platform](https://celltype.info/project/381)
 
 ## References
 
