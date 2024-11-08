@@ -81,11 +81,13 @@ The following two UMAPs display the embeddings of the full 3.1 million cells in 
 
 | HRCA v1.0: majorclass | HRCA v1.0: cell type |
 |---------|---------|
-| <img src="figures/umapHRCA_snRNA_allcells_rawcounts_umap_majorclass_wolabel.png" alt="HRCAv1.0 UMAP with majorclass labels" width="400"> | <img src="figures/umapHRCA_snRNA_allcells_rawcounts_umap_celltype_wolabel.png" alt="HRCAv1.0 UMAP with cell type labels" width="500"> |
+| <img src="figures/umapHRCA_snRNA_allcells_rawcounts_umap_majorclass_wolabel.png" alt="HRCAv1.0 UMAP with majorclass labels" width="300"> | <img src="figures/umapHRCA_snRNA_allcells_rawcounts_umap_celltype_wolabel.png" alt="HRCAv1.0 UMAP with cell type labels" width="300"> |
 
 In the reference model, the contingency table on the left shows example cell type labels, comparing self-predicted labels with input labels. High self-prediction metrics, such as a 99.41% F1 score, demonstrate the consistent classification accuracy of the trained reference model.
 
-
+| HRCA Reference Model: contingency table | HRCA Reference model: self-prediction metrics |
+|---------|---------|
+| <img src="figures/HRCA_scArches_QC_tab.png" alt="HRCA Reference Model: contingency table" width="450"> | <img src="figures/HRCA_reference_metric.png" alt="HRCA Reference model: self-prediction metrics" width="150"> |
 
 The trained reference model is available in Zenodo at https://doi.org/10.5281/zenodo.14014720, named “model.pt”. This reference model file can be directly used in the cell type prediction for a query dataset. More details about cell type prediction can be found in the next section.
 
@@ -163,4 +165,7 @@ Options:
 
 Running this query data was efficient on a GPU machine with limited computing resources, needing less than 500MB of memory and under 4 minutes of processing time. The isolated clusters in the query data embedding and high concordance between annotated and predicted major class labels demonstrated accurate label transfer with the HRCA v1.0 reference model.
 
+| Query: majorclass | Query: label prediction | Query: contingency table |
+|---------|---------|
+| <img src="figures/umapquery_query_umap_majorclass_wolabel.png" alt="Query: majorclass" width="200"> | <img src="figures/umapquery_query_umap_scANVI_predictions_wolabel.png" alt="Query: label prediction" width="200"> | <img src="figures/HRCA_scArches_query_map.png" alt="Query: contingency table" width="200"> |
 
