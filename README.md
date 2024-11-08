@@ -4,13 +4,7 @@ This repository comprises code and analyses for the Human Retina Cell Atlas (HRC
 
 ## File organization for figures and tables
 
-The main code can be found in the [analysis](./analysis) directory of this repository. The subdirectories are organized according to the main figures corresponding to the manuscript. Each figure folder contains a document file that explains the running script, input, and output files. The [utility](./utility) folder comprises standalone scripts that have been used in multiple places.
-
-The repositories below are also developed and utilized in the HRCA.
-
-1. The pipeline to process the unpublished and collected public datasets is accessible at https://github.com/lijinbio/cellqc
-
-2. Scripts related to the benchmark study, integration pipeline, and label transfer using scArches are available at https://github.com/theislab/HRCA-reproducibility
+The main code can be found in the [analysis](./analysis) directory of this repository. The subdirectories are organized according to the main figures corresponding to the manuscript. Each figure folder contains a document file that explains the running script, input, and output files. The [utility](./utility) folder comprises standalone scripts that have been used in multiple places. Additionally, two other repositories -- the [preprocessing pipeline](https://github.com/lijinbio/cellqc) and [benchmark scripts](https://github.com/theislab/HRCA-reproducibility) -- have also been developed and utilized in the HRCA.
 
 ## HRCA Reference Model with scArches
 
