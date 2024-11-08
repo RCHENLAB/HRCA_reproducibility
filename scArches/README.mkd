@@ -1,6 +1,6 @@
 # HRCA v1.0 reference model using scArches
 
-This tutorial aims to demonstrate the training of the reference model for the HRCA v1.0 using [scArches](https://docs.scarches.org/en/latest/index.html), and cell type annotation using the trained reference model. The utilities in this tutorial refer to the source code used in the [HLCA tutorial](https://docs.scarches.org/en/latest/hlca_map_classify.html). Please refer to [Li et al. 2023](https://doi.org/10.1101/2023.11.07.566105) for detailed description of HRCA. The trained reference model is accessible to download on Zenodo at https://doi.org/10.5281/zenodo.14014720.
+This tutorial aims to demonstrate the training of the reference model for the HRCA v1.0 using [scArches](https://docs.scarches.org/en/latest/index.html), and cell type annotation using the trained reference model. The utilities in this tutorial refer to the source code used in the [HLCA tutorial](https://docs.scarches.org/en/latest/hlca_map_classify.html). Please refer to [Li et al. 2023](https://doi.org/10.1101/2023.11.07.566105) for detailed description of HRCA. The trained reference model is available for download on Zenodo at https://doi.org/10.5281/zenodo.14014720.
 
 ## Installation
 
