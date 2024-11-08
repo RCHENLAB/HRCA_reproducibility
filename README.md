@@ -12,7 +12,7 @@ The repositories below are also developed and utilized in the HRCA.
 
 2. Scripts related to the benchmark study, integration pipeline, and label transfer using scArches are available at https://github.com/theislab/HRCA-reproducibility
 
-## [HRCA Reference Model with scArches](./scArches)
+## HRCA Reference Model with scArches
 
 Please refer to [scArches](./scArches) for a brief tutorial on training the reference model for HRCA v1.0 and performing label transfer using the trained reference model with scArches.
 
@@ -26,6 +26,7 @@ HRCA can be accessed through several interactive web browsers, including:
 - [CELLxGENE](https://cellxgene.cziscience.com/collections/4c6eaf5c-6d57-4c76-b1e9-60df8c655f1e)
 - [UCSC Cell Browser](https://retina.cells.ucsc.edu)
 - [Broad Single Cell Portal](https://singlecell.broadinstitute.org/single_cell/study/SCP2805)
+- [Cell Annotation Platform](https://celltype.info/project/381)
 
 ## References
 
