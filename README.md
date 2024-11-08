@@ -8,7 +8,7 @@ The main code can be found in the [analysis](./analysis) directory of this repos
 
 ## HRCA Reference Model with scArches
 
-Please refer to [scArches](./scArches) for a brief tutorial on training the reference model for HRCA v1.0 and performing label transfer using the trained reference model with scArches.
+Please refer to [HRCA with scArches](./scArches) for a brief tutorial on training the reference model for HRCA v1.0 and performing label transfer using the trained reference model with scArches.
 
 The HRCA v1.0 reference model with scArches is available for download on Zenodo at https://doi.org/10.5281/zenodo.14014720.
 
