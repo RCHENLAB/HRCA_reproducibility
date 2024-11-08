@@ -79,9 +79,9 @@ Given the big number of over 3.1 millon cells, the utility running took over 3 h
 
 The following two UMAPs display the embeddings of the full 3.1 million cells in the trained reference model. The 10 major classes and 123 cell types from the reference are impressively well-isolated in the visualization.
 
-<img src="figures/umapHRCA_snRNA_allcells_rawcounts_umap_majorclass_wolabel.png" alt="HRCAv1.0 UMAP with majorclass labels" width="300">
-
-![HRCAv1.0 UMAP with majorclass labels](figures/umapHRCA_snRNA_allcells_rawcounts_umap_majorclass_wolabel.png)
+| HRCA v1.0: majorclass | HRCA v1.0: cell type |
+|---------|---------|
+| <img src="figures/umapHRCA_snRNA_allcells_rawcounts_umap_majorclass_wolabel.png" alt="HRCAv1.0 UMAP with majorclass labels" width="400"> | <img src="figures/umapHRCA_snRNA_allcells_rawcounts_umap_celltype_wolabel.png" alt="HRCAv1.0 UMAP with cell type labels" width="500"> |
 
 In the reference model, the contingency table on the left shows example cell type labels, comparing self-predicted labels with input labels. High self-prediction metrics, such as a 99.41% F1 score, demonstrate the consistent classification accuracy of the trained reference model.
 
