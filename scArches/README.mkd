@@ -8,7 +8,7 @@ This tutorial aims to demonstrate the training of the reference model for the HR
 $ mamba create -n scarches python=3.10 'scarches>=0.6.1' pytorch-gpu 'chex>=0.1.87' 'jax>=0.4.31' 'jaxlib>=0.4.31' 'scvi-tools>=1.2.0' 'scanpy>=1.10.3'
 ```
 
-It is recommended to install scArches via [Conda](https://docs.conda.io/en/latest/miniconda.html) or [Mamba](https://anaconda.org/conda-forge/mamba). The command above has been tested on a GPU machine. Dependency versions are specified as of October 2024. An example environment file is provided as “scarches.yaml”.
+It is recommended to install scArches via [Conda](https://docs.conda.io/en/latest/miniconda.html) or [Mamba](https://anaconda.org/conda-forge/mamba). The command above has been tested on a GPU machine. Dependency versions are specified as of October 2024. An example environment file is provided as ["scarches.yaml"](./scarches.yaml).
 
 To train the reference model and predict cell types using the trained reference model, two utilities, "scarchesh5ad2refbyscanvi" and "scarches2queryannobyscanvi", have been encapsulated in a [HRCAutils](https://github.com/lijinbio/HRCAutils) Python package and they can be installed through the following command lines.
 
@@ -166,6 +166,6 @@ Options:
 Running this query data was efficient on a GPU machine with limited computing resources, needing less than 500MB of memory and under 4 minutes of processing time. The isolated clusters in the query data embedding and high concordance between annotated and predicted major class labels demonstrated accurate label transfer with the HRCA v1.0 reference model.
 
 | Query: majorclass | Query: label prediction | Query: contingency table |
-|---------|---------|
+|---------|---------|---------|
 | <img src="figures/umapquery_query_umap_majorclass_wolabel.png" alt="Query: majorclass" width="200"> | <img src="figures/umapquery_query_umap_scANVI_predictions_wolabel.png" alt="Query: label prediction" width="200"> | <img src="figures/HRCA_scArches_query_map.png" alt="Query: contingency table" width="200"> |
 
